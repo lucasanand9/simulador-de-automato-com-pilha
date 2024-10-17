@@ -2,15 +2,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+void printEstado(Estados *a){
+    printf("Nome: %s\nFinal: %i\nInicial: %i\n", a->nome, a->final, a->inicial);
+}
+
+
 void printEstados(Estados *estados, int quantidade){
     for (int i = 0; i < quantidade; i++){
-        printf("Estado: %s\n", estados[i].nome);
+        printEstado(&(estados[i]));
     }
 }
 
 void printAlfabeto(Alfabeto *alfabeto, int quantidade){
     for (int i = 0; i < quantidade; i++){
-        printf("Estado: %c\n", alfabeto[i].simbolo);
+        printf("Alfabeto: %c\n", alfabeto[i].simbolo);
     }
 }
 

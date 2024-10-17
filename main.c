@@ -3,9 +3,9 @@
 #include "automato.h"
 
 int main(){
-    Estados *estados;
-    Alfabeto *alfabeto;
-    Alfabeto *alfaPilha;
+    Estados *estados  = malloc(sizeof(Estados));
+    Alfabeto *alfabeto = malloc(sizeof(Alfabeto));
+    Alfabeto *alfaPilha = malloc(sizeof(Alfabeto));
     int index = 0;
 
     printf("Digite qual eh o alfabeto:\n");
@@ -13,7 +13,7 @@ int main(){
     while (index != -1){
         simbolosDoAlfabeto++;
         printf("Digite um simbolo para o alfabeto:\n");
-        alfabeto = malloc(sizeof(Alfabeto)*simbolosDoAlfabeto);
+        alfabeto = realloc(alfabeto, simbolosDoAlfabeto);
         scanf(" %c", &(alfabeto[simbolosDoAlfabeto-1].simbolo));
         getchar();
         printf("Digite 0 para adicionar um novo simbolo ou -1 para sair:\n");
@@ -26,12 +26,12 @@ int main(){
     while (index != -1){
         quantidadeEstados++;
         printf("Qual o nome do novo estado:\n");
-        estados = malloc(sizeof(Estados)*quantidadeEstados);
+        estados = realloc(estados, quantidadeEstados);
         scanf(" %s", estados[quantidadeEstados-1].nome);
         printf("Esse estado eh final?(1 - sim | 0 - nao)\n");
-        scanf("%i", &(estados[quantidadeEstados-1].final));
+        scanf("%i", &(estados[quantidadeEstados-1]).final);
         printf("Esse estado eh inicial?(1 - sim | 0 - nao)\n");
-        scanf("%i",&(estados[quantidadeEstados-1].inicial) );
+        scanf("%i",&(estados[quantidadeEstados-1]).inicial );
         printf("Digite 0 para adicionar um novo estado ou -1 para sair:\n");
         scanf("%i", &index);
     }
@@ -41,13 +41,14 @@ int main(){
     while (index != -1){
         simbolosDoAlfabetoDaPilha++;
         printf("Digite um novo simbolo para o alfabeto:\n");
-        alfaPilha = malloc(sizeof(Alfabeto)*simbolosDoAlfabetoDaPilha);
+        alfaPilha = realloc(alfaPilha, simbolosDoAlfabetoDaPilha);
         scanf(" %c", &(alfaPilha[simbolosDoAlfabetoDaPilha-1].simbolo));
         getchar();
         printf("Digite 0 para adicionar um novo simbolo ou -1 para sair:\n");
         scanf("%i", &index);
     }
     int a;
+
     printf("Alfabeto da fita:\n");
     printAlfabeto(alfabeto, simbolosDoAlfabeto);
     printf("Alfabeto da pilha:\n");
@@ -55,9 +56,4 @@ int main(){
     printf("Todos os estados:\n");
     printEstados(estados, quantidadeEstados);
     Estados *final = estadosFinais(estados, quantidadeEstados, &a);
-    printf("Estados finais:\n");
-    printEstados(final, a);
-    Estados *inicial = estadosFinais(estados, quantidadeEstados, &a);
-    printf("Estados iniciais:\n");
-    printEstados(inicial, a);
 }

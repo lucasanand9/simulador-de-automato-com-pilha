@@ -8,6 +8,7 @@ typedef struct {
     char simbolo;
 }Alfabeto;
 
+void printEstado(Estados *a);
 void printEstados(Estados *estados, int quantidade);
 void printAlfabeto(Alfabeto *alfabeto, int quantidade);
 Estados * estadosFinais(Estados *estados, int quantidade, int *resultSaida);
