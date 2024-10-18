@@ -10,10 +10,10 @@ typedef struct {
 
 typedef struct {
     Estados estadoAtual;
-    Alfabeto simboloFita;
-    Alfabeto simboloEmpilha;
+    char simboloFita;
+    char simboloEmpilha;
     Estados estadoFinal;
-    Alfabeto simboloDesempilha;
+    char simboloDesempilha;
 } fPrograma;
 
 typedef struct NoPilha{
@@ -35,11 +35,13 @@ typedef struct pilha{
 void printEstado(Estados *a);
 void printEstados(Estados *estados, int quantidade);
 void printAlfabeto(Alfabeto *alfabeto, int quantidade);
+void printFuncaoPrograma(fPrograma *fprograma, int quantidade);
 Estados * estadosFinais(Estados *estados, int quantidade, int *resultSaida);
 Estados * estadosIniciais(Estados *estados, int quantidade, int *resultSaida);
 int verificaAlfabeto(char a, Alfabeto *alfa, int tamanho);
 int verificaEstado(char a[10], Estados *estado, int tamanho);
-fPrograma * funcaoPrograma();
+
+
 int vazia(Pilha *pilha);
 Pilha * cria(void);
 int empilha(Alfabeto *reg, Pilha *pil);

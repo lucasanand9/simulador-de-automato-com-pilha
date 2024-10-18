@@ -21,6 +21,12 @@ int main(){
         printf("Digite 0 para adicionar um novo simbolo ou -1 para sair:\n");
         scanf(" %i", &index);
     }
+    simbolosDoAlfabeto += 2;
+    alfabeto = realloc(alfabeto, simbolosDoAlfabeto);
+    alfabeto[simbolosDoAlfabeto-2].simbolo = 'E';
+    alfabeto[simbolosDoAlfabeto-1].simbolo = '?';
+
+
 
     index = 0;
     printf("Digite quais sao os estados:\n");
@@ -50,6 +56,12 @@ int main(){
         printf("Digite 0 para adicionar um novo simbolo ou -1 para sair:\n");
         scanf("%i", &index);
     }
+    simbolosDoAlfabetoDaPilha += 2;
+    alfaPilha = realloc(alfaPilha, simbolosDoAlfabetoDaPilha);
+    alfaPilha[simbolosDoAlfabetoDaPilha-2].simbolo = 'E';
+    alfaPilha[simbolosDoAlfabetoDaPilha-1].simbolo = '?';
+
+
 
     index = 0;
     printf("Digite a funcao programa:\n");
@@ -64,11 +76,11 @@ int main(){
                 printf("Esse estado nao existe, tente novamente:\n");
             }
             
-            printf("Digite o nome do estado:\n");
+            printf("Digite o nome do estado inicial:\n");
             scanf(" %s", nomeEstado);
             vdd = verificaEstado(nomeEstado, estados, quantidadeEstados); 
         } while (!vdd);
-        strcpy(&(funcPrograma[funcProgramaCont-1]).estadoAtual, nomeEstado);
+        strcpy((funcPrograma[funcProgramaCont-1]).estadoAtual.nome, nomeEstado);
         
 
         printf("Qual o simbolo que sera lido na fita:\n");
@@ -77,12 +89,12 @@ int main(){
             if (!vdd){
                 printf("Esse simbolo nao existe, tente novamente:\n");
             }
-            printf("Digite o simbolo do alfabeto");
+            printf("Digite o simbolo do alfabeto:\n");
             scanf(" %c", &simbAlfa);
             getchar();
-            vdd = verificaAlfabeto(simbAlfa, alfabeto, simbolosDoAlfabeto); // fazer funcionar com epson ou ?
+            vdd = verificaAlfabeto(simbAlfa, alfabeto, simbolosDoAlfabeto);
         } while (!vdd);
-        funcPrograma[funcProgramaCont-1].simboloFita = simbAlfa; // ver oq ta de errado
+        funcPrograma[funcProgramaCont-1].simboloFita = simbAlfa; 
         
         printf("Qual o simbolo que sera empilhado na pilha:\n");
         do{
@@ -92,9 +104,9 @@ int main(){
             printf("Digite o simbolo do alfabeto de pilhas");
             scanf(" %c", &simbAlfa);
             getchar();
-            vdd = verificaAlfabeto(simbAlfa, alfabeto, simbolosDoAlfabeto); // fazer funcionar com epson ou ?
+            vdd = verificaAlfabeto(simbAlfa, alfaPilha, simbolosDoAlfabeto); 
         } while (!vdd);
-        funcPrograma[funcProgramaCont-1].simboloEmpilha = simbAlfa; //ver oq ta de errado
+        funcPrograma[funcProgramaCont-1].simboloEmpilha = simbAlfa; 
 
         printf("Digite o estado que terminara essa acao:\n");
         do{
@@ -102,40 +114,41 @@ int main(){
                 printf("Esse estado nao existe, tente novamente:\n");
             }
             
-            printf("Digite o nome do estado:\n");
+            printf("Digite o nome do estado final:\n");
             scanf(" %s", nomeEstado);
             vdd = verificaEstado(nomeEstado, estados, quantidadeEstados); 
         } while (!vdd);
-        strcpy(&(funcPrograma[funcProgramaCont-1]).estadoAtual, nomeEstado);
+        strcpy(funcPrograma[funcProgramaCont-1].estadoAtual.nome, nomeEstado);
 
         printf("Qual o simbolo que sera desenpilhado:\n");
         do{
             if (!vdd){
                 printf("Esse simbolo nao existe, tente novamente:\n");
             }
-            printf("Digite o simbolo do alfabeto de pilhas");
+            printf("Digite o simbolo do alfabeto de pilhas:\n");
             scanf(" %c", &simbAlfa);
             getchar();
-            vdd = verificaAlfabeto(simbAlfa, alfabeto, simbolosDoAlfabeto); // fazer funcionar com epson ou ?
+            vdd = verificaAlfabeto(simbAlfa, alfaPilha, simbolosDoAlfabeto);
         } while (!vdd);
-        funcPrograma[funcProgramaCont-1].simboloDesempilha = simbAlfa; //ver oq ta de errado
+        funcPrograma[funcProgramaCont-1].simboloDesempilha = simbAlfa; 
 
-
-                
-        
-
+        printf("Digite 0 para adicionar uma nova lei na funcao programa ou -1 para sair:\n");
     }
     
+    // index = 0;
+        // int tam = 0;
+        
+        // while (index != -1){
+        //     char fita[100];
+        //     printf("Digite a fita para testar o automato:\n");
+        //     scanf(" %s", fita);
+        //     tam = strlen(fita);
+        //     char comp;
+        //     for (int i = 0; i < tam; i++){
+        //         comp = fita[i];
 
+        //     }
+            
+        // }
 
-
-
-    // int a;
-    // printf("Alfabeto da fita:\n");
-    // printAlfabeto(alfabeto, simbolosDoAlfabeto);
-    // printf("Alfabeto da pilha:\n");
-    // printAlfabeto(alfaPilha, simbolosDoAlfabetoDaPilha);
-    // printf("Todos os estados:\n");
-    // printEstados(estados, quantidadeEstados);
-    // Estados *final = estadosFinais(estados, quantidadeEstados, &a);
 }

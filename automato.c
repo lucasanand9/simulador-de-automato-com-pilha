@@ -21,6 +21,12 @@ void printAlfabeto(Alfabeto *alfabeto, int quantidade){
     }
 }
 
+void printFuncaoPrograma(fPrograma *fprograma, int quantidade){
+     for (int i = 0; i < quantidade; i++){
+        printf("func: (%s, %c, %c) -> (%s, %c)\n", fprograma[i].estadoAtual.nome,fprograma[i].simboloFita, fprograma[i].simboloDesempilha, fprograma[i].estadoFinal.nome, fprograma[i].simboloEmpilha);
+    }
+}
+
 Estados * estadosFinais(Estados *estados, int quantidade, int *resultSaida){
     Estados *final;
     *resultSaida = 0;
@@ -80,7 +86,7 @@ int empilha(Alfabeto *novo, Pilha *pil){
     NoPilha *aux=NULL;
     aux=(NoPilha *) malloc(sizeof(NoPilha));
     if (aux!=NULL){
-        memcpy(&(aux->alfa),novo, sizeof(Alfabeto)); //<<<<<<<<<<
+        memcpy(&(aux->alfa),novo, sizeof(Alfabeto)); 
 	    aux->baixo=pil->topo;
      	pil->topo=aux;
 	    (pil->tamPilha)++;
@@ -93,7 +99,7 @@ int empilha(Alfabeto *novo, Pilha *pil){
 int desempilha(Alfabeto *reg, Pilha *pil){
     NoPilha *aux=NULL;	  
     if (vazia(pil)==0){	
-        memcpy(reg, &(pil->topo->alfa),sizeof(Alfabeto)); //<<<<<<<
+        memcpy(reg, &(pil->topo->alfa),sizeof(Alfabeto)); //
 	aux=pil->topo->baixo;
 	free(pil->topo);
 	pil->topo=aux;
@@ -112,3 +118,4 @@ int verificaEstado(char a[10], Estados *estado, int tamanho){
     }
     return 1;    
 }
+
